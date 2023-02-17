@@ -43,9 +43,9 @@ app.get("/job", async(req, res) => {
 app.get("/job/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const companies = await pool.query(`SELECT * FROM companies WHERE id = $1`, [id]);
+        const jobApp = await pool.query(`SELECT * FROM companies WHERE id = $1`, [id]);
 
-        res.json(companies.rows[0]);
+        res.json(jobApp.rows[0]);
     } catch (error) {
         console.log(err.message);
     }
