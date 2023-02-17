@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import './App.css';
-import SearchJobs from './components/SearchJobs';
+import ListJobs from './components/ListJobs';
 
 
 function App() {
   return (
     <Fragment>
-      <SearchJobs />
+      <ListJobs />
     </Fragment>
   )
 }
