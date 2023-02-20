@@ -1,4 +1,6 @@
 import React, { useEffect, useState }from "react";
+import UpdateJobs from "./UpdateJobs";
+
 
 const ListJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -12,7 +14,7 @@ const ListJobs = () => {
                 // console.log(jsonData);
                 setJobs(jsonData);
             } catch (error) {
-                console.error(error)
+                console.error(error);
             }
         }
 
@@ -24,13 +26,14 @@ const ListJobs = () => {
     return (
         <div>
             <h1>Applications</h1>
-            <div className="jobs">
+            <div className="jobList">
                 {jobs.map(job =>(
-                    <div className="job">
+                    <div className="job" key={job.id}>
                         <h2>{job.company_name}</h2>
-                        <h3>{job.job_role}</h3>
+                        <p>{job.job_role}</p>
                         <span>{new Date(job.date_applied).toLocaleDateString()}</span>
-                        <h4>{job.status}</h4>
+                        <p>{job.status}</p>
+                        <UpdateJobs job={job}/>
                     </div>
                 ))}
             </div>

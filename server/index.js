@@ -53,7 +53,7 @@ app.get("/job/:id", async (req, res) => {
 
 // Update
 app.put("/job/:id", (req, res) => {
-    const id = req.params.id; 
+    const jobId = req.params.id; 
     const updateJob = `UPDATE companies SET company_name = $1, job_role = $2, date_applied = $3, status = $4 WHERE id = $5`;
     const values = [
         req.body.company_name,
@@ -62,7 +62,7 @@ app.put("/job/:id", (req, res) => {
         req.body.status
     ];
     
-    pool.query(updateJob, [...values, id]).then((response) => {
+    pool.query(updateJob, [...values, jobId]).then((response) => {
         console.log("Updated application");
         console.log(response);
     }).catch((err) => {
