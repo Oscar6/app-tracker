@@ -11,12 +11,12 @@ app.use(express.json());
 
 // Create
 app.post("/job", (req, res) => {
-    const newJob = `INSERT INTO companies (company_name, job_role, date_applied, status) VALUES ($1, $2, $3, $4)`;
+    const newJob = `INSERT INTO companies (company_name, job_role, date_applied, app_status) VALUES ($1, $2, $3, $4)`;
     const values = [
         req.body.company_name,
         req.body.job_role,
         req.body.date_applied,
-        req.body.status
+        req.body.app_status
     ];
     
     pool.query(newJob, values).then((response) => {
@@ -54,12 +54,12 @@ app.get("/job/:id", async (req, res) => {
 // Update
 app.put("/job/:id", (req, res) => {
     const jobId = req.params.id; 
-    const updateJob = `UPDATE companies SET company_name = $1, job_role = $2, date_applied = $3, status = $4 WHERE id = $5`;
+    const updateJob = `UPDATE companies SET company_name = $1, job_role = $2, date_applied = $3, app_status = $4 WHERE id = $5`;
     const values = [
         req.body.company_name,
         req.body.job_role,
         req.body.date_applied,
-        req.body.status
+        req.body.app_status
     ];
     
     pool.query(updateJob, [...values, jobId]).then((response) => {

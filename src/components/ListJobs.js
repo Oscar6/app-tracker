@@ -1,4 +1,5 @@
 import React, { useEffect, useState }from "react";
+import AddJob from "./AddJob";
 import UpdateJobs from "./UpdateJobs";
 
 
@@ -26,13 +27,14 @@ const ListJobs = () => {
     return (
         <div>
             <h1>Applications</h1>
+            <AddJob />
             <div className="jobList">
                 {jobs.map(job =>(
                     <div className="job" key={job.id}>
                         <h2>{job.company_name}</h2>
                         <p>{job.job_role}</p>
                         <span>{new Date(job.date_applied).toLocaleDateString()}</span>
-                        <p>{job.status}</p>
+                        <p>{job.app_status}</p>
                         <UpdateJobs job={job}/>
                     </div>
                 ))}
