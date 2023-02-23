@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+body  {
+  background-color: rgb(18, 75, 101);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  height: 70px;
+  display: flex;
+  padding: 20px 36px;
+  background-color: rgb(255, 255, 255, 0.935);
+  box-shadow: 0px 2.98256px 20px rgba(0, 0, 0, 0.817);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.job-list {
+  padding: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-x: auto;
+  justify-content: left;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.job {
+  background-color: rgba(255, 255, 255, 0.935);
+  padding: 10px;
+  height: 300px;
+  width: 215px;
+  font-size: 20px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: relative;
+  border: 1px;
+  border-color: rgb(220, 220, 220);
+  border-style: solid;
+  border-radius: 10px;
+  box-shadow: 0px 2.98256px 10px rgba(0, 0, 0, 0.817);
 }
 
-.App-link {
-  color: #61dafb;
+.company-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* overflow-x: auto; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.job-role {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+

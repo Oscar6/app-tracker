@@ -35,7 +35,7 @@ app.get("/job", async(req, res) => {
         const allJobs = await pool.query(`SELECT * FROM companies`);
         res.json(allJobs.rows)
     } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
     }
 });
 

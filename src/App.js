@@ -1,13 +1,14 @@
-import { Fragment } from 'react';
 import './App.css';
 import ListJobs from './components/ListJobs';
+import NavBar from './components/NavBar';
 
 
 function App() {
   return (
-    <Fragment>
-      <ListJobs />
-    </Fragment>
+      <div>
+        <NavBar />
+        <ListJobs />
+      </div>
   )
 }
 

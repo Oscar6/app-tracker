@@ -28,14 +28,14 @@ const ListJobs = () => {
         <div>
             <h1>Applications</h1>
             <AddJob />
-            <div className="jobList">
-                {jobs.map(job =>(
+            <div className="job-list">
+                {jobs.map(job => (
                     <div className="job" key={job.id}>
-                        <h2>{job.company_name}</h2>
-                        <p>{job.job_role}</p>
-                        <span>{new Date(job.date_applied).toLocaleDateString()}</span>
-                        <p>{job.app_status}</p>
-                        <UpdateJobs job={job}/>
+                        <p className="company-name">{job.company_name}</p>
+                        <p className="job-role">{job.job_role}</p>
+                        <span>Applied on: {new Date(job.date_applied).toLocaleDateString()}</span>
+                        <p>Status: {job.app_status}</p>
+                        <UpdateJobs job={job} />
                     </div>
                 ))}
             </div>

@@ -31,6 +31,18 @@ const UpdateJobs = ({ job }) => {
       }
     }
 
+    const deleteJob = async (id) => {
+        try {
+            const deleteJob = await fetch(`http://localhost:5000/job/${job.id}`, {
+                method: 'DELETE'
+            });
+            
+            window.location = "/";
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <div>
             <button 
@@ -119,9 +131,9 @@ const UpdateJobs = ({ job }) => {
                         type="button" 
                         className="btn btn-danger" 
                         data-bs-dismiss="modal"
-                        onClick={() => setJobInfo(job)}
+                        onClick={() => { window.confirm( 'Are you sure you want to delete this Job?', ) && deleteJob(job.id)}}
                     >
-                        Close
+                        Delete
                     </button>
                 </div>
 
