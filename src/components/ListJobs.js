@@ -1,11 +1,11 @@
-import React, { useEffect, useState }from "react";
+import React, { useEffect, useState } from "react";
 import AddJob from "./AddJob";
 import UpdateJobs from "./UpdateJobs";
 
 
 const ListJobs = () => {
     const [jobs, setJobs] = useState([]);
-    
+
     useEffect(() => {
         const fetchAllJobs = async () => {
             try {
@@ -34,7 +34,17 @@ const ListJobs = () => {
                         <p className="company-name">{job.company_name}</p>
                         <p className="job-role">{job.job_role}</p>
                         <span>Applied on: {new Date(job.date_applied).toLocaleDateString()}</span>
-                        <p>Status: {job.app_status}</p>
+                        <p className="status-style">Status: {job.app_status}</p>
+                        <div className="update-button">
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target={`#id${job.id}`}
+                            >
+                                Update
+                            </button>
+                        </div>
                         <UpdateJobs job={job} />
                     </div>
                 ))}

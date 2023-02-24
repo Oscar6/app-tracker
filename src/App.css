@@ -50,4 +50,7 @@ nav {
   text-overflow: ellipsis;
 }
 
-
+.update-button {
+  display: flex;
+  justify-content: right;
+}

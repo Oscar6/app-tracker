@@ -45,15 +45,6 @@ const UpdateJobs = ({ job }) => {
 
     return (
         <div>
-            <button 
-                type="button" 
-                className="btn btn-primary" 
-                data-bs-toggle="modal" 
-                data-bs-target={`#id${job.id}`}
-            >
-                Update
-            </button>
-
             <div className="modal fade" id={`id${job.id}`} onClick={() => setJobInfo(job)}>
             <div className="modal-dialog">
                 <div className="modal-content">
