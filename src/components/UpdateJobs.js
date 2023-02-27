@@ -83,7 +83,7 @@ const UpdateJobs = ({ job }) => {
                         />
                     </label>
 
-                    <label>
+                    <label className="date-input">
                         Date:
                         <input
                             onChange={changeHandler} 

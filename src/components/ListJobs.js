@@ -33,8 +33,16 @@ const ListJobs = () => {
                     <div className="job" key={job.id}>
                         <p className="company-name">{job.company_name}</p>
                         <p className="job-role">{job.job_role}</p>
-                        <span>Applied on: {new Date(job.date_applied).toLocaleDateString()}</span>
-                        <p className="status-style">Status: {job.app_status}</p>
+                        <span>
+                            Applied on:
+                            <br/> 
+                            {new Date(job.date_applied).toLocaleDateString()}
+                        </span>
+                        <p className="status-style">
+                            Status: 
+                            <br/>
+                            {job.app_status}
+                        </p>
                         <div className="update-button">
                             <button
                                 type="button"

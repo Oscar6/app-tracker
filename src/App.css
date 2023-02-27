@@ -32,25 +32,43 @@ nav {
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: space-between;
   border: 1px;
   border-color: rgb(220, 220, 220);
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 4px;
   box-shadow: 0px 2.98256px 10px rgba(0, 0, 0, 0.817);
 }
 
 .company-name {
-  overflow: hidden;
   text-overflow: ellipsis;
-  /* overflow-x: auto; */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .job-role {
-  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.status-style {
+  margin-top: 17px;
 }
 
 .update-button {
   display: flex;
-  justify-content: right;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.modal-body {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.date-input, .dropdown {
+  width: 220px;
 }

@@ -78,7 +78,7 @@ const AddJob = () => {
                         />
                     </label>
 
-                    <label>
+                    <label className="date-input">
                         Date:
                         <input
                             type="date"
