@@ -1,12 +1,13 @@
 body  {
-  background-color: rgb(18, 75, 101);
+  background-color: rgb(1, 34, 48);
 }
 
 nav {
   height: 70px;
   display: flex;
   padding: 20px 36px;
-  background-color: rgb(255, 255, 255, 0.935);
+  background-color: rgb(23, 93, 125);
+  color: rgba(255, 255, 255, 0.914);
   box-shadow: 0px 2.98256px 20px rgba(0, 0, 0, 0.817);
   position: sticky;
   top: 0;
@@ -23,7 +24,8 @@ nav {
 }
 
 .job {
-  background-color: rgba(255, 255, 255, 0.935);
+  background-color: rgb(23, 93, 125);
+  color: rgba(255, 255, 255, 0.914);
   padding: 10px;
   height: 300px;
   width: 215px;
@@ -34,7 +36,7 @@ nav {
   position: relative;
   justify-content: space-between;
   border: 1px;
-  border-color: rgb(220, 220, 220);
+  border-color: rgb(23, 93, 125);
   border-style: solid;
   border-radius: 4px;
   box-shadow: 0px 2.98256px 10px rgba(0, 0, 0, 0.817);
@@ -62,7 +64,12 @@ nav {
   margin-top: auto;
 }
 
+.modal-header {
+  color: rgb(0, 0, 0);
+}
+
 .modal-body {
+  color: rgb(0, 0, 0);
   font-size: 18px;
   display: flex;
   flex-direction: column;
