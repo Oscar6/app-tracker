@@ -19,7 +19,7 @@ To start app, run:\
 Navigate into server folder and run:\
 	`npm install` OR `npm init` and step through default options
 
-Install Express PG and CORS:\
+Install Express, PG and CORS:\
 	`npm i express pg cors`
 
 Install nodemon globally to automatically refresh server when there are changes to database:\
