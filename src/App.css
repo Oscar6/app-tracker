@@ -21,13 +21,20 @@ body  {
   margin-bottom: 20px;
 }
 
+.list-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  color: rgba(255, 255, 255, 0.914);
+}
+
 .job-list {
-  padding: 200px;
+  padding: 80px 200px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   overflow-x: auto;
-  justify-content: left;
+  justify-content: center;
 }
 
 .job {

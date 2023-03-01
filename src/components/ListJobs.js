@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AddJob from "./AddJob";
 import UpdateJobs from "./UpdateJobs";
 
 
@@ -26,8 +25,9 @@ const ListJobs = () => {
 
     return (
         <div>
-            <h1>Applications</h1>
-            <AddJob />
+            <h1 className="list-header">
+                Applications: {jobs.length}
+            </h1>
             <div className="job-list">
                 {jobs.map(job => (
                     <div className="job" key={job.id}>
@@ -46,11 +46,11 @@ const ListJobs = () => {
                         <div className="update-button">
                             <button
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn"
                                 data-bs-toggle="modal"
                                 data-bs-target={`#id${job.id}`}
                             >
-                                Update
+                                <i class="bi bi-pencil-square"></i>
                             </button>
                         </div>
                         <UpdateJobs job={job} />
