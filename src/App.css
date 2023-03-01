@@ -2,7 +2,7 @@ body  {
   background-color: rgb(1, 34, 48);
 }
 
-nav {
+.nav {
   height: 70px;
   display: flex;
   padding: 20px 36px;
@@ -12,6 +12,13 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.add-job {
+  display: flex;
+  align-items: flex-end;
+  margin-left: auto;
+  margin-bottom: 20px;
 }
 
 .job-list {

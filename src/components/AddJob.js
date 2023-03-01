@@ -34,16 +34,7 @@ const AddJob = () => {
 
     return (
         <div>
-            <button 
-                type="button" 
-                className="btn btn-primary" 
-                data-bs-toggle="modal" 
-                data-bs-target="#myModal"
-            >
-                Add Job
-            </button>
-
-            <div className="modal fade" id='myModal'>
+            <div className="modal fade" id='myModal' data-bs-backdrop="static">
             <div className="modal-dialog">
                 <div className="modal-content">
 
