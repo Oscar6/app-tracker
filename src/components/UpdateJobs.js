@@ -25,7 +25,6 @@ const UpdateJobs = ({ job }) => {
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(body)
           })
-          window.location = "/";
       } catch (error) {
           console.error(error);
       }
@@ -36,8 +35,6 @@ const UpdateJobs = ({ job }) => {
             const deleteJob = await fetch(`http://localhost:5000/job/${job.id}`, {
                 method: 'DELETE'
             });
-            
-            window.location = "/";
         } catch (error) {
             console.error(error)
         }

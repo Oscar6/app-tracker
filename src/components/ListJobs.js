@@ -19,7 +19,7 @@ const ListJobs = () => {
         }
 
         fetchAllJobs();
-    }, []);
+    }, [jobs]);
 
     console.log(jobs);
 
