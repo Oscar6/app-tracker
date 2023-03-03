@@ -19,7 +19,7 @@ const ListJobs = () => {
         }
 
         fetchAllJobs();
-    }, [jobs]);
+    }, []);
 
     console.log(jobs);
 
@@ -50,7 +50,7 @@ const ListJobs = () => {
                                 data-bs-toggle="modal"
                                 data-bs-target={`#id${job.id}`}
                             >
-                                <i class="bi bi-pencil-square"></i>
+                                <i className="bi bi-pencil-square"></i>
                             </button>
                         </div>
                         <UpdateJobs job={job} />
