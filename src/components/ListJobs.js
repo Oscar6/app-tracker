@@ -29,18 +29,18 @@ const ListJobs = () => {
                 Applications: {jobs.length}
             </h1>
             <div className="job-list">
-                {jobs.map(job => (
+                {jobs.sort((a, b) => a.date_applied.localeCompare(b.date_applied)).map(job => (
                     <div className="job" key={job.id}>
                         <p className="company-name">{job.company_name}</p>
                         <p className="job-role">{job.job_role}</p>
                         <span>
                             Applied on:
-                            <br/> 
+                            <br />
                             {new Date(job.date_applied).toLocaleDateString()}
                         </span>
                         <p className="status-style">
-                            Status: 
-                            <br/>
+                            Status:
+                            <br />
                             {job.app_status}
                         </p>
                         <div className="update-button">
