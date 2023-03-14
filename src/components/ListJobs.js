@@ -8,15 +8,13 @@ const ListJobs = () => {
     useEffect(() => {
         const fetchAllJobs = async () => {
             try {
-                const res = await fetch("http://localhost:5000/job")
+                const res = await fetch('http://localhost:5000/job');
                 const jsonData = await res.json();
-
-                // console.log(jsonData);
                 setJobs(jsonData);
             } catch (error) {
                 console.error(error);
             }
-        }
+        };
 
         fetchAllJobs();
     }, []);
