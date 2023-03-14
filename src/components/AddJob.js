@@ -30,7 +30,7 @@ const AddJob = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     return (
         <div>
