@@ -94,8 +94,7 @@ const UpdateJobs = ({ job }) => {
                             <div className="dropdown">
                                 Application Status:
                                 <select className="form-select" aria-label="status" name="app_status" onChange={changeHandler} value={jobInfo.app_status}>
-                                    <option hidden={true}>Select Status</option>
-                                    <option disabled="disabled" default={true}>Select Status</option>
+                                    <option disabled>Select Status</option>
                                     <option value="Applied">Applied</option>
                                     <option value="Rejected">Rejected</option>
                                     <option value="Interviewed">Interviewed</option>
