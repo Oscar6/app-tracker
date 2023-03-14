@@ -6,7 +6,7 @@ const UpdateJobs = ({ job }) => {
         company_name: job.company_name,
         job_role: job.job_role,
         date_applied: job.date_applied,
-        app_status: ""
+        app_status: job.app_status
     });
 
     const changeHandler = (e) => {
@@ -93,14 +93,15 @@ const UpdateJobs = ({ job }) => {
 
                             <div className="dropdown">
                                 Application Status:
-                                <select className="form-select" aria-label="status" name="app_status" onChange={changeHandler}>
+                                <select className="form-select" aria-label="status" name="app_status" onChange={changeHandler} value={jobInfo.app_status}>
                                     <option hidden={true}>Select Status</option>
                                     <option disabled="disabled" default={true}>Select Status</option>
-                                    <option>Applied</option>
-                                    <option>Rejected</option>
-                                    <option>Interviewed</option>
-                                    <option>Technical</option>
-                                    <option>Offer</option>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Interviewed">Interviewed</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Offer">Offer</option>
+
                                 </select>
                             </div>
                         </div>
