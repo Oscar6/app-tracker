@@ -10,24 +10,19 @@ app.use(express.json());
 // Routes
 
 // Create
-app.post("/job", (req, res) => {
-    const newJob = `INSERT INTO companies (company_name, job_role, date_applied, app_status) VALUES ($1, $2, $3, $4)`;
-    const values = [
-        req.body.company_name,
-        req.body.job_role,
-        req.body.date_applied,
-        req.body.app_status
-    ];
-    
-    pool.query(newJob, values).then((response) => {
-        console.log("Uploaded application");
-        console.log(response);
-    }).catch((err) => {
-        console.error(err);
-    });
-    console.log(req.body);
-    res.send("Response received: " + req.body)
-});
+app.post("/job", async (req, res) => {
+    try {
+      const { company_name, job_role, date_applied, app_status } = req.body;
+      const newJob = await pool.query(
+        "INSERT INTO companies (company_name, job_role, date_applied, app_status) VALUES($1, $2, $3, $4) RETURNING *",
+        [company_name, job_role, date_applied, app_status]
+      );
+      res.status(201).json(newJob.rows[0]);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  });
 
 // Get All
 app.get("/job", async(req, res) => {

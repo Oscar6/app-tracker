@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const AddJob = () => {
+const AddJob = ({ setJobsList }) => {
 
-    const initialNewJobState = {
+    const [newJob, setNewJob] = useState({
         company_name: "",
         job_role: "",
         date_applied: "",
-        app_status: ""
-    };
-
-    const [newJob, setNewJob] = useState(initialNewJobState);
+        app_status: "",
+      });
 
     const changeHandler = (e) => {
         setNewJob({
@@ -28,8 +27,14 @@ const AddJob = () => {
                 body: JSON.stringify(body)
             });
 
-            setNewJob(initialNewJobState);
-
+            const data = await response.json();
+            setJobsList(prevJobsList => [...prevJobsList, data]);
+            setNewJob({
+                company_name: "",
+                job_role: "",
+                date_applied: "",
+                app_status: "",
+            });
         } catch (error) {
             console.error(error);
         }
@@ -115,6 +120,10 @@ const AddJob = () => {
             </div>
         </div>
     )
-}
+};
+
+AddJob.propTypes = {
+    setJobsList: PropTypes.func.isRequired,
+  };
 
 export default AddJob;

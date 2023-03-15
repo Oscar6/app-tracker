@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UpdateJobs = ({ job }) => {
+const UpdateJobs = ({ job, setJobsList }) => {
     // console.log(job);
     const [jobInfo, setJobInfo] = useState({
         company_name: job.company_name,
@@ -24,7 +24,8 @@ const UpdateJobs = ({ job }) => {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(body)
-          })
+          });
+          setJobsList(prevJobsList => prevJobsList.map(prevJob => prevJob.id === job.id ? { ...prevJob, ...jobInfo } : prevJob));
       } catch (error) {
           console.error(error);
       }
@@ -35,6 +36,7 @@ const UpdateJobs = ({ job }) => {
             const deleteJob = await fetch(`http://localhost:5000/job/${job.id}`, {
                 method: 'DELETE'
             });
+            setJobsList(prevJobsList => prevJobsList.filter(prevJob => prevJob.id !== job.id));
         } catch (error) {
             console.error(error)
         }
@@ -100,7 +102,6 @@ const UpdateJobs = ({ job }) => {
                                     <option value="Interviewed">Interviewed</option>
                                     <option value="Technical">Technical</option>
                                     <option value="Offer">Offer</option>
-
                                 </select>
                             </div>
                         </div>
