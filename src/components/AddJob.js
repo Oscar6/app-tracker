@@ -35,6 +35,7 @@ const AddJob = ({ setJobsList }) => {
                 date_applied: "",
                 app_status: "",
             });
+            window.location = "/";
         } catch (error) {
             console.error(error);
         }

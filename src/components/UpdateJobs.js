@@ -83,13 +83,13 @@ const UpdateJobs = ({ job, setJobsList }) => {
                             </label>
 
                             <label className="date-input">
-                                Date:
+                                Applied On:
                                 <input
-                                    onChange={changeHandler}
-                                    type="date"
+                                    readOnly
+                                    type="text"
                                     name="date_applied"
                                     className="form-control"
-                                    value={new Date(jobInfo.date_applied).toISOString().slice(0, 10)}
+                                    value={new Date(jobInfo.date_applied).toLocaleDateString()}
                                 />
                             </label>
 
