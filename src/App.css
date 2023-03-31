@@ -28,6 +28,21 @@ body  {
   color: rgba(255, 255, 255, 0.914);
 }
 
+.job-filter {
+  display: flex;
+  justify-content: center;
+  width: 350px !important;
+  margin: auto;
+}
+
+.search-button {
+  margin-left: 5px;
+}
+
+.clear-button {
+  margin-left: 4px;
+}
+
 .job-list {
   padding: 80px 200px;
   display: flex;

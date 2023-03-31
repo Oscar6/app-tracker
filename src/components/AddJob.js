@@ -65,7 +65,7 @@ const AddJob = ({ setJobsList }) => {
                                     name="company_name"
                                     className="form-control"
                                     onChange={changeHandler}
-                                    value={newJob.company_name} // Add value prop to update input field
+                                    value={newJob.company_name}
                                 />
                             </label>
 
@@ -76,7 +76,7 @@ const AddJob = ({ setJobsList }) => {
                                     name="job_role"
                                     className="form-control"
                                     onChange={changeHandler}
-                                    value={newJob.job_role} // Add value prop to update input field
+                                    value={newJob.job_role}
                                 />
                             </label>
 
@@ -87,7 +87,7 @@ const AddJob = ({ setJobsList }) => {
                                     name="date_applied"
                                     className="form-control"
                                     onChange={changeHandler}
-                                    value={newJob.date_applied} // Add value prop to update input field
+                                    value={newJob.date_applied}
                                 />
                             </label>
 
