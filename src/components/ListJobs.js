@@ -50,6 +50,13 @@ const ListJobs = () => {
     setIsSearchClicked(true);
   };
 
+  useEffect(() => {
+    const filteredList = jobsList.filter(
+      (job) => job.company_name === selectedCompany
+    );
+    setFilteredJobsList(filteredList);
+  }, [jobsList, selectedCompany]);
+
   const handleClear = () => {
     setSelectedCompany("");
     setIsSearchClicked(false);
@@ -76,18 +83,18 @@ const ListJobs = () => {
           }
           ref={typeaheadRef}
         />
-        <button 
-          className="search-button btn btn-light" 
+        <button
+          className="search-button btn btn-light"
           type="button"
           onClick={handleFilter}
-          >
-            <i className="bi bi-search"></i>
-          </button>
+        >
+          <i className="bi bi-search"></i>
+        </button>
         {
           isSearchClicked
           &&
-          (<button 
-            className="clear-button btn btn-light" 
+          (<button
+            className="clear-button btn btn-light"
             type="button"
             onClick={handleClear}>Clear</button>)
         }

@@ -29,18 +29,32 @@ body  {
 }
 
 .job-filter {
+  width: 250px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  width: 350px !important;
-  margin: auto;
+}
+
+.job-filter .rbt-input-hint-container,
+.job-filter .rbt-input-main {
+  width: 250px;
+  display: flex;
+  border: 1px;
+  background-color: rgba(255, 255, 255, 0.914);
+  border-style: solid;
+  border-radius: 6px;
+  box-shadow: 0px 2.98256px 10px rgba(0, 0, 0, 0.817);
 }
 
 .search-button {
+  display: flex;
   margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.914);
 }
 
 .clear-button {
-  margin-left: 4px;
+  margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.914);
 }
 
 .job-list {
