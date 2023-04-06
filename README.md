@@ -49,3 +49,9 @@ Connect to database:\
 Replace pool configurations in `server/job_appsDB.js` with your corresponding info.
 
 Verify calls on Postman
+
+****** ****** ****** ******
+Send tacos if this app is helping
+
+
+[<img alt="alt_text" width="80px" src="https://github.com/Oscar6/app-tracker/blob/main/public/images/venmo_Oscar-M.png?raw=true" />](https://account.venmo.com/u/Oscar-M) [<img alt="alt_text" width="80px" src="https://github.com/Oscar6/app-tracker/blob/main/public/images/paypal_dumbdumbdev.png?raw=true" />](https://www.paypal.me/dumbdumbdev)
