@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+server/job_appsDB.js
 
 # testing
 /coverage
