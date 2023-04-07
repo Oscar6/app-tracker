@@ -16,6 +16,22 @@ To start app, run:\
 
 ### Setting up backend
 
+To connect database, make a file in your server folder that contains your DB properties:\
+	Ex. jobs_db.js
+
+Apply the following properties with your DB info to the file:\
+	`const Pool = require("pg").Pool;
+
+	const pool = new Pool({
+		user: "{username}",
+		password: "{password}",
+		host: "localhost",
+		port: 5432,
+		database: "{name_given_to_db}"
+	});
+
+	module.exports = pool;`
+
 Navigate into server folder and run:\
 	`npm install` OR `npm init` and step through default options
 
@@ -25,7 +41,7 @@ Install Express, PG and CORS:\
 Install nodemon globally to automatically refresh server when there are changes to database:\
 	`npm install -g nodemon`
 
-`sever/index.js` contains server info and database calls.
+`server/index.js` contains server info and database calls.
 
 To start server, open a separate terminal and run:\
 	`nodemon index`
@@ -44,9 +60,6 @@ Create table and run following script:
     date_applied date,
     app_status varchar(50)
 );`
-
-Connect to database:\
-Replace pool configurations in `server/job_appsDB.js` with your corresponding info.
 
 Verify calls on Postman
 
