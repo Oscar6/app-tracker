@@ -20,8 +20,8 @@ To connect database, make a file in your server folder that contains your DB pro
 	Ex. jobs_db.js
 
 Apply the following properties with your DB info to the file:\
-	`const Pool = require("pg").Pool;
 
+	const Pool = require("pg").Pool;
 	const pool = new Pool({
 		user: "{username}",
 		password: "{password}",
@@ -30,7 +30,7 @@ Apply the following properties with your DB info to the file:\
 		database: "{name_given_to_db}"
 	});
 
-	module.exports = pool;`
+	module.exports = pool;
 
 Navigate into server folder and run:\
 	`npm install` OR `npm init` and step through default options
