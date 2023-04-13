@@ -28,6 +28,17 @@ body  {
   color: rgba(255, 255, 255, 0.914);
 }
 
+.status-counts {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  color: rgba(255, 255, 255, 0.914);
+}
+
+.statuses {
+  margin-right: 20px;
+}
+
 .job-filter {
   width: 250px;
   margin: 0 auto;

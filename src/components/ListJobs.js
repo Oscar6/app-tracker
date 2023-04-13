@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import UpdateJobs from "./UpdateJobs";
+import StatusCounts from "./StatusCounts";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -71,6 +72,7 @@ const ListJobs = () => {
   return (
     <div>
       <h1 className="list-header">Applications: {jobsList.length}</h1>
+      <StatusCounts jobsList={jobsList} />
       <div className="job-filter">
         <Typeahead
           id="company-search"
