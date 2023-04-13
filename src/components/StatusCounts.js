@@ -1,34 +1,40 @@
 import React from "react";
 
-const StatusCounts = ({ jobs }) => {
-  
-  let rejectedCount = 0;
-  let initialCount = 0;
-  let technicalCount = 0;
-  let offerCount = 0;
+const StatusCounts = ({ jobsList }) => {
 
-  jobs?.forEach(job => {
+  const counts = (jobsList || []).reduce(
+    (acc, job) => {
 
-    if (job.status_rejected !== null && job.status_rejected !== undefined && job.status_rejected !== "") {
-      rejectedCount++;
+      if (job.status_rejected && Date.parse(job.status_rejected)) {
+        acc.rejectedCount++;
+      }
+      if (job.status_initial && Date.parse(job.status_initial)) {
+        acc.initialCount++;
+      }
+      if (job.status_technical && Date.parse(job.status_technical)) {
+        acc.technicalCount++;
+      }
+      if (job.status_offer && Date.parse(job.status_offer)) {
+        acc.offerCount++;
+      }
+      return acc;
+    },
+    {
+      rejectedCount: 0,
+      initialCount: 0,
+      technicalCount: 0,
+      offerCount: 0,
     }
-    if (job.status_initial !== null && job.status_initial !== undefined && job.status_initial !== "") {
-      initialCount++;
-    }
-    if (job.status_technical !== null && job.status_technical !== undefined && job.status_technical !== "") {
-      technicalCount++;
-    }
-    if (job.status_offer !== null && job.status_offer !== undefined && job.status_offer !== "") {
-      offerCount++;
-    }
-  });
+  );
+
+  // console.log('status counts:', counts);
 
   return (
     <div className="status-counts">
-      <h1 className="statuses">Rejected: {rejectedCount}</h1>
-      <h1 className="statuses">Initial: {initialCount}</h1>
-      <h1 className="statuses">Technical: {technicalCount}</h1>
-      <h1 className="statuses">Offer: {offerCount}</h1>
+      <h1 className="statuses">Rejected: {counts.rejectedCount}</h1>
+      <h1 className="statuses">Interviewed: {counts.initialCount}</h1>
+      <h1 className="statuses">Technical: {counts.technicalCount}</h1>
+      <h1 className="statuses">Offer: {counts.offerCount}</h1>
     </div>
   );
 };

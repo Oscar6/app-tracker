@@ -25,10 +25,9 @@ const ListJobs = () => {
   }, []);
 
   useEffect(() => {
-    console.log("jobsList state changed");
   }, [jobsList]);
 
-  console.log(jobsList);
+  // console.log(jobsList);
 
   const sortJobs = jobsList
     .sort((a, b) => b.date_applied.localeCompare(a.date_applied))
