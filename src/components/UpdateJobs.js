@@ -6,15 +6,40 @@ const UpdateJobs = ({ job, setJobsList }) => {
         company_name: job.company_name,
         job_role: job.job_role,
         date_applied: job.date_applied,
-        app_status: job.app_status
+        app_status: job.app_status,
+        statusDate: "",
+        status_rejected: job.status_rejected,
+        status_initial: job.status_initial,
+        status_technical: job.status_technical,
+        status_offer: job.status_offer
     });
 
+    // const changeHandler = (e) => {
+    //     setJobInfo({
+    //       ...jobInfo,
+    //       [e.target.name]: e.target.value
+    //     });
+    //   };
+
     const changeHandler = (e) => {
-        setJobInfo({
-          ...jobInfo,
-          [e.target.name]: e.target.value
+    const { name, value } = e.target;
+    if (name === "app_status" && value !== "Applied") {
+        setJobInfo((prevJobInfo) => {
+            const selectedDate = new Date();
+            return {
+                ...prevJobInfo,
+                app_status: value,
+                statusDate: selectedDate,
+                status_rejected: value === "Rejected" ? selectedDate : null,
+                status_initial: value === "Interviewed" ? selectedDate : null,
+                status_technical: value === "Technical" ? selectedDate : null,
+                status_offer: value === "Offer" ? selectedDate : null
+            };
         });
-      };
+    } else {
+        setJobInfo({ ...jobInfo, [name]: value });
+    }
+};
 
     const updateJobInfo = async e => {
       e.preventDefault();
@@ -103,6 +128,19 @@ const UpdateJobs = ({ job, setJobsList }) => {
                                     <option value="Technical">Technical</option>
                                     <option value="Offer">Offer</option>
                                 </select>
+                                {jobInfo.app_status !== "Applied" && (
+                                // Render date input only when status is changed from "Applied" to another option
+                                <div>
+                                    <label htmlFor="statusDate">on:</label>
+                                    <input
+                                    type="date"
+                                    id="statusDate"
+                                    name="statusDate"
+                                    value={jobInfo.statusDate}
+                                    onChange={changeHandler}
+                                    />
+                                </div>
+                                )}
                             </div>
                         </div>
 
