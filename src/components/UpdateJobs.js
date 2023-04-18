@@ -23,18 +23,26 @@ const UpdateJobs = ({ job, setJobsList }) => {
 
     const changeHandler = (e) => {
     const { name, value } = e.target;
+
     if (name === "app_status" && value !== "Applied") {
         setJobInfo((prevJobInfo) => {
-            const selectedDate = new Date();
-            return {
-                ...prevJobInfo,
-                app_status: value,
-                statusDate: selectedDate,
-                status_rejected: value === "Rejected" ? selectedDate : null,
-                status_initial: value === "Interviewed" ? selectedDate : null,
-                status_technical: value === "Technical" ? selectedDate : null,
-                status_offer: value === "Offer" ? selectedDate : null
-            };
+            const statusToUpdate = value === "Rejected" ? "status_rejected" :
+                value === "Interviewed" ? "status_initial" :
+                value === "Technical" ? "status_technical" :
+                value === "Offer" ? "status_offer" : null;
+
+            if (statusToUpdate) {
+                return {
+                    ...prevJobInfo,
+                    app_status: value,
+                    [statusToUpdate]: new Date().toISOString()
+                };
+            } else {
+                return {
+                    ...prevJobInfo,
+                    app_status: value
+                };
+            }
         });
     } else {
         setJobInfo({ ...jobInfo, [name]: value });
@@ -131,14 +139,16 @@ const UpdateJobs = ({ job, setJobsList }) => {
                                 {jobInfo.app_status !== "Applied" && (
                                 // Render date input only when status is changed from "Applied" to another option
                                 <div>
-                                    <label htmlFor="statusDate">on:</label>
-                                    <input
-                                    type="date"
-                                    id="statusDate"
-                                    name="statusDate"
-                                    value={jobInfo.statusDate}
-                                    onChange={changeHandler}
-                                    />
+                                    <label htmlFor="statusDate">on:
+                                        <input
+                                            type="date"
+                                            id="statusDate"
+                                            name="statusDate"
+                                            className="form-control"
+                                            value={jobInfo.statusDate}
+                                            onChange={changeHandler}
+                                        />
+                                    </label>
                                 </div>
                                 )}
                             </div>
