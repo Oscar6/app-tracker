@@ -1,9 +1,11 @@
 const express = require("express");
+const helmet = require("helmet");
 const app = express();
 const cors = require("cors");
 const pool = require("./job_appsDB");
 
 // Middleware
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
