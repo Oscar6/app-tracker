@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import validator from "validator";
 
 const AddJob = ({ setJobsList }) => {
 
@@ -9,24 +10,80 @@ const AddJob = ({ setJobsList }) => {
         date_applied: "",
         app_status: "",
       });
+    
+    const [errorMessages, setErrorMessages] = useState({
+        company_name: "",
+        job_role: ""
+    });
+
+    const [isDisabled, setIsDisabled] = useState(true);
 
     const changeHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+    
+        if (name === "company_name") {
+            if (!validator.isLength(value, { min: 0, max: 50 })) {
+              setErrorMessages({
+                ...errorMessages,
+                company_name: "Max characters allowed reached",
+              });
+            } else {
+              setErrorMessages({
+                ...errorMessages,
+                company_name: "",
+              });
+            }
+          } else if (name === "job_role") {
+            if (!validator.isLength(value, { min: 0, max: 50 })) {
+                setErrorMessages({
+                ...errorMessages,
+                job_role: "Max characters allowed reached",
+              });
+            } else {
+                setErrorMessages({
+                ...errorMessages,
+                job_role: "",
+              });
+            }
+          }
+    
         setNewJob({
             ...newJob,
-            [e.target.name]: e.target.value
+            [name]: value
         });
     };
 
+    useEffect(() => {
+        if (validator.isLength(newJob.company_name, { min: 1, max: 50 }) && validator.isLength(newJob.job_role, { min: 1, max: 50 })) {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    }, [newJob]);
+
     const handleSubmitClick = async e => {
         e.preventDefault();
+    
+        // Sanitize the input values
+        const companyName = validator.escape(newJob.company_name);
+        const jobRole = validator.escape(newJob.job_role);
+        const dateApplied = validator.escape(newJob.date_applied);
+        const appStatus = validator.escape(newJob.app_status);
+    
         try {
-            const body = { ...newJob };
+            const body = { 
+                company_name: companyName,
+                job_role: jobRole,
+                date_applied: dateApplied,
+                app_status: appStatus,
+            };
             const response = await fetch("http://localhost:5000/job", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
-
+    
             const data = await response.json();
             setJobsList(prevJobsList => [...prevJobsList, data]);
             setNewJob({
@@ -67,6 +124,9 @@ const AddJob = ({ setJobsList }) => {
                                     onChange={changeHandler}
                                     value={newJob.company_name}
                                 />
+                                {errorMessages.company_name && (
+                                    <p className="text-danger">{errorMessages.company_name}</p>
+                                )}
                             </label>
 
                             <label>
@@ -78,6 +138,9 @@ const AddJob = ({ setJobsList }) => {
                                     onChange={changeHandler}
                                     value={newJob.job_role}
                                 />
+                                {errorMessages.job_role && (
+                                    <p className="text-danger">{errorMessages.job_role}</p>
+                                )}
                             </label>
 
                             <label className="date-input">
@@ -111,6 +174,7 @@ const AddJob = ({ setJobsList }) => {
                                 className="btn btn-success"
                                 data-bs-dismiss="modal"
                                 onClick={handleSubmitClick}
+                                disabled={isDisabled}
                             >
                                 Submit
                             </button>
