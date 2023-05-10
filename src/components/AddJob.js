@@ -19,8 +19,7 @@ const AddJob = ({ setJobsList }) => {
     const [isDisabled, setIsDisabled] = useState(true);
 
     const changeHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const { name, value } = e.target;
     
         if (name === "company_name") {
             if (!validator.isLength(value, { min: 0, max: 50 })) {
@@ -65,7 +64,7 @@ const AddJob = ({ setJobsList }) => {
     const handleSubmitClick = async e => {
         e.preventDefault();
     
-        // Sanitize the input values
+        // Sanitizing input values
         const companyName = validator.escape(newJob.company_name);
         const jobRole = validator.escape(newJob.job_role);
         const dateApplied = validator.escape(newJob.date_applied);
