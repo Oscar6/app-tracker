@@ -70,35 +70,37 @@ const ListJobs = () => {
 
   return (
     <div>
-      <h1 className="list-header">Applications: {jobsList.length}</h1>
-      <StatusCounts jobsList={jobsList} />
-      <div className="job-filter">
-        <Typeahead
-          id="company-search"
-          labelKey="company_name"
-          options={jobsList}
-          minLength={1}
-          placeholder="Search by company name..."
-          onChange={(selected) =>
-            setSelectedCompany(selected[0]?.company_name || "")
-          }
-          ref={typeaheadRef}
-        />
-        <button
-          className="search-button btn btn-light"
-          type="button"
-          onClick={handleFilter}
-        >
-          <i className="bi bi-search"></i>
-        </button>
-        {
-          isSearchClicked
-          &&
-          (<button
-            className="clear-button btn btn-light"
+      <div className="sticky-count">
+        <h1 className="list-header">Applications: {jobsList.length}</h1>
+        <StatusCounts jobsList={jobsList} />
+        <div className="job-filter">
+          <Typeahead
+            id="company-search"
+            labelKey="company_name"
+            options={jobsList}
+            minLength={1}
+            placeholder="Search by company name..."
+            onChange={(selected) =>
+              setSelectedCompany(selected[0]?.company_name || "")
+            }
+            ref={typeaheadRef}
+          />
+          <button
+            className="search-button btn btn-light"
             type="button"
-            onClick={handleClear}>Clear</button>)
-        }
+            onClick={handleFilter}
+          >
+            <i className="bi bi-search"></i>
+          </button>
+          {
+            isSearchClicked
+            &&
+            (<button
+              className="clear-button btn btn-light"
+              type="button"
+              onClick={handleClear}>Clear</button>)
+          }
+        </div>
       </div>
       <div className="job-list">
         {jobsToRender.map((job) => (
