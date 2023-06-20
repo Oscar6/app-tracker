@@ -71,6 +71,19 @@ const UpdateJobs = ({ job, setJobsList }) => {
                 };
             }
         });
+    } else if (name === "statusDate") {
+        setJobInfo((prevJobInfo) => ({
+            ...prevJobInfo,
+            statusDate: value.toString(),
+            status_rejected:
+                prevJobInfo.app_status === "Rejected" ? value.toString() : prevJobInfo.status_rejected,
+            status_initial:
+                prevJobInfo.app_status === "Interviewed" ? value.toString() : prevJobInfo.status_initial,
+            status_technical:
+                prevJobInfo.app_status === "Technical" ? value.toString() : prevJobInfo.status_technical,
+            status_offer:
+                prevJobInfo.app_status === "Offer" ? value.toString() : prevJobInfo.status_offer
+        }));
     } else {
         setJobInfo({ ...jobInfo, [name]: value });
     }
@@ -98,11 +111,11 @@ useEffect(() => {
             job_role: jobRole,
             date_applied: dateApplied,
             app_status: appStatus,
-            statusDate: "",
-            status_rejected: job.status_rejected,
-            status_initial: job.status_initial,
-            status_technical: job.status_technical,
-            status_offer: job.status_offer
+            statusDate: jobInfo.statusDate,
+            status_rejected: jobInfo.app_status === "Rejected" ? jobInfo.statusDate : jobInfo.status_rejected,
+            status_initial: jobInfo.app_status === "Interviewed" ? jobInfo.statusDate : jobInfo.status_initial,
+            status_technical: jobInfo.app_status === "Technical" ? jobInfo.statusDate : jobInfo.status_technical,
+            status_offer: jobInfo.app_status === "Offer" ? jobInfo.statusDate : jobInfo.status_offer,
           };
           const response = await fetch(`http://localhost:5000/job/${job.id}`, {
               method: 'PUT',
