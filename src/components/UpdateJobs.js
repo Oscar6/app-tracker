@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import validator from "validator";
+import { decodeHTMLEntities } from "./Helper";
 
 const UpdateJobs = ({ job, setJobsList }) => {
     // console.log(job);
@@ -100,17 +101,12 @@ useEffect(() => {
     const updateJobInfo = async e => {
         e.preventDefault();
 
-        const companyName = validator.escape(jobInfo.company_name);
-        const jobRole = validator.escape(jobInfo.job_role);
-        const dateApplied = validator.escape(jobInfo.date_applied);
-        const appStatus = validator.escape(jobInfo.app_status);
-
       try {
           const body = {
-            company_name: companyName,
-            job_role: jobRole,
-            date_applied: dateApplied,
-            app_status: appStatus,
+            company_name: jobInfo.company_name,
+            job_role: jobInfo.job_role,
+            date_applied: jobInfo.date_applied,
+            app_status: jobInfo.app_status,
             statusDate: jobInfo.statusDate,
             status_rejected: jobInfo.app_status === "Rejected" ? jobInfo.statusDate : jobInfo.status_rejected,
             status_initial: jobInfo.app_status === "Interviewed" ? jobInfo.statusDate : jobInfo.status_initial,
@@ -164,7 +160,7 @@ useEffect(() => {
                                     type="text"
                                     name="company_name"
                                     className="form-control"
-                                    value={jobInfo.company_name}
+                                    value={decodeHTMLEntities(jobInfo.company_name)}
                                 />
                                 {errorMessages.company_name && (
                                     <p className="text-danger">{errorMessages.company_name}</p>

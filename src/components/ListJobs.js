@@ -3,6 +3,7 @@ import UpdateJobs from "./UpdateJobs";
 import StatusCounts from "./StatusCounts";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { decodeHTMLEntities } from "./Helper";
 
 const ListJobs = () => {
   const [jobsList, setJobsList] = useState([]);
@@ -105,7 +106,7 @@ const ListJobs = () => {
       <div className="job-list">
         {jobsToRender.map((job) => (
           <div className="job" key={job.id}>
-            <p className="company-name">{job.company_name}</p>
+            <p className="company-name">{decodeHTMLEntities(job.company_name)}</p>
             <p className="job-role">{job.job_role}</p>
             <span>
               Applied on:

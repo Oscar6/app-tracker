@@ -64,18 +64,12 @@ const AddJob = ({ setJobsList }) => {
     const handleSubmitClick = async e => {
         e.preventDefault();
     
-        // Sanitizing input values
-        const companyName = validator.escape(newJob.company_name);
-        const jobRole = validator.escape(newJob.job_role);
-        const dateApplied = validator.escape(newJob.date_applied);
-        const appStatus = validator.escape(newJob.app_status);
-    
         try {
             const body = { 
-                company_name: companyName,
-                job_role: jobRole,
-                date_applied: dateApplied,
-                app_status: appStatus,
+                company_name: newJob.company_name,
+                job_role: newJob.job_role,
+                date_applied: newJob.date_applied,
+                app_status: newJob.app_status,
             };
             const response = await fetch("http://localhost:5000/job", {
                 method: 'POST',
