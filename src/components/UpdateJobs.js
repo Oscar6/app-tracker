@@ -113,7 +113,7 @@ useEffect(() => {
             status_technical: jobInfo.app_status === "Technical" ? jobInfo.statusDate : jobInfo.status_technical,
             status_offer: jobInfo.app_status === "Offer" ? jobInfo.statusDate : jobInfo.status_offer,
           };
-          const response = await fetch(`http://localhost:5000/job/${job.id}`, {
+          await fetch(`http://localhost:5000/job/${job.id}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(body)
@@ -126,7 +126,7 @@ useEffect(() => {
 
     const deleteJob = async (id) => {
         try {
-            const deleteJob = await fetch(`http://localhost:5000/job/${job.id}`, {
+            await fetch(`http://localhost:5000/job/${job.id}`, {
                 method: 'DELETE'
             });
             setJobsList(prevJobsList => prevJobsList.filter(prevJob => prevJob.id !== job.id));
