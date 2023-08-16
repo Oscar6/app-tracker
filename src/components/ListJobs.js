@@ -1,29 +1,31 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import UpdateJobs from "./UpdateJobs";
 import StatusCounts from "./StatusCounts";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { decodeHTMLEntities } from "./Helper";
 
-const ListJobs = () => {
+const ListJobs = ({ refreshJobList }) => {
   const [jobsList, setJobsList] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState('');
   const [filteredJobsList, setFilteredJobsList] = useState([]);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
 
-  useEffect(() => {
-    const fetchAllJobs = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/job");
-        const jsonData = await res.json();
-        setJobsList(jsonData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
+  const fetchAllJobs = useCallback(async () => {
+    try {
+      const res = await fetch("http://localhost:5000/job");
+      const jsonData = await res.json();
+      setJobsList(jsonData);
+      refreshJobList();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [refreshJobList]);
+
+  useEffect(() => {
     fetchAllJobs();
-  }, []);
+  }, [fetchAllJobs]);
 
   useEffect(() => {
   }, [jobsList]);

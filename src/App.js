@@ -9,12 +9,22 @@ function App() {
 
   const [jobsList, setJobsList] = useState([]);
 
+  const refreshJobList = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/job");
+      const jsonData = await res.json();
+      setJobsList(jsonData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-      <div>
-        <NavBar />
-        <AddJob setJobsList={setJobsList}/>
-        <ListJobs jobsList={jobsList} setJobsList={setJobsList}/>
-      </div>
+    <div>
+      <NavBar />
+      <AddJob setJobsList={setJobsList} refreshJobList={refreshJobList} />
+      <ListJobs jobsList={jobsList} setJobsList={setJobsList} refreshJobList={refreshJobList} />
+    </div>
   )
 }
 

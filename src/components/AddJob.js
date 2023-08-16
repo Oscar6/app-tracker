@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import validator from "validator";
 
-const AddJob = ({ setJobsList }) => {
+const AddJob = ({ setJobsList, refreshJobList }) => {
 
     const [newJob, setNewJob] = useState({
         company_name: "",
         job_role: "",
         date_applied: "",
         app_status: "",
-      });
-    
+    });
+
     const [errorMessages, setErrorMessages] = useState({
         company_name: "",
         job_role: ""
@@ -20,33 +20,33 @@ const AddJob = ({ setJobsList }) => {
 
     const changeHandler = (e) => {
         const { name, value } = e.target;
-    
+
         if (name === "company_name") {
             if (!validator.isLength(value, { min: 0, max: 50 })) {
-              setErrorMessages({
-                ...errorMessages,
-                company_name: "Max characters allowed reached",
-              });
+                setErrorMessages({
+                    ...errorMessages,
+                    company_name: "Max characters allowed reached",
+                });
             } else {
-              setErrorMessages({
-                ...errorMessages,
-                company_name: "",
-              });
+                setErrorMessages({
+                    ...errorMessages,
+                    company_name: "",
+                });
             }
-          } else if (name === "job_role") {
+        } else if (name === "job_role") {
             if (!validator.isLength(value, { min: 0, max: 50 })) {
                 setErrorMessages({
-                ...errorMessages,
-                job_role: "Max characters allowed reached",
-              });
+                    ...errorMessages,
+                    job_role: "Max characters allowed reached",
+                });
             } else {
                 setErrorMessages({
-                ...errorMessages,
-                job_role: "",
-              });
+                    ...errorMessages,
+                    job_role: "",
+                });
             }
-          }
-    
+        }
+
         setNewJob({
             ...newJob,
             [name]: value
@@ -63,9 +63,9 @@ const AddJob = ({ setJobsList }) => {
 
     const handleSubmitClick = async e => {
         e.preventDefault();
-    
+
         try {
-            const body = { 
+            const body = {
                 company_name: newJob.company_name,
                 job_role: newJob.job_role,
                 date_applied: newJob.date_applied,
@@ -76,16 +76,16 @@ const AddJob = ({ setJobsList }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
-    
+
             const data = await response.json();
             setJobsList(prevJobsList => [...prevJobsList, data]);
+            refreshJobList();
             setNewJob({
                 company_name: "",
                 job_role: "",
                 date_applied: "",
                 app_status: "",
             });
-            window.location = "/";
         } catch (error) {
             console.error(error);
         }
@@ -182,6 +182,6 @@ const AddJob = ({ setJobsList }) => {
 
 AddJob.propTypes = {
     setJobsList: PropTypes.func.isRequired,
-  };
+};
 
 export default AddJob;
