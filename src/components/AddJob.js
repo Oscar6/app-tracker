@@ -93,7 +93,7 @@ const AddJob = ({ setJobsList, refreshJobList }) => {
 
     return (
         <div>
-            <div className="modal fade" id='myModal' data-bs-backdrop="static">
+            <div className="modal fade" id='addJobModal' data-bs-backdrop="static">
                 <div className="modal-dialog">
                     <div className="modal-content">
 

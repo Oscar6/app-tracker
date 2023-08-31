@@ -11,7 +11,7 @@ const UpdateJobs = ({ job, setJobsList }) => {
         app_status: job.app_status,
         statusDate: "",
         status_rejected: job.status_rejected,
-        status_initial: job.status_initial,
+        status_interviewed: job.status_interviewed,
         status_technical: job.status_technical,
         status_offer: job.status_offer
     });
@@ -55,7 +55,7 @@ const UpdateJobs = ({ job, setJobsList }) => {
     if (name === "app_status" && value !== "Applied") {
         setJobInfo((prevJobInfo) => {
             const statusToUpdate = value === "Rejected" ? "status_rejected" :
-                value === "Interviewed" ? "status_initial" :
+                value === "Interviewed" ? "status_interviewed" :
                 value === "Technical" ? "status_technical" :
                 value === "Offer" ? "status_offer" : null;
 
@@ -78,8 +78,8 @@ const UpdateJobs = ({ job, setJobsList }) => {
             statusDate: value.toString(),
             status_rejected:
                 prevJobInfo.app_status === "Rejected" ? value.toString() : prevJobInfo.status_rejected,
-            status_initial:
-                prevJobInfo.app_status === "Interviewed" ? value.toString() : prevJobInfo.status_initial,
+            status_interviewed:
+                prevJobInfo.app_status === "Interviewed" ? value.toString() : prevJobInfo.status_interviewed,
             status_technical:
                 prevJobInfo.app_status === "Technical" ? value.toString() : prevJobInfo.status_technical,
             status_offer:
@@ -109,7 +109,7 @@ useEffect(() => {
             app_status: jobInfo.app_status,
             statusDate: jobInfo.statusDate,
             status_rejected: jobInfo.app_status === "Rejected" ? jobInfo.statusDate : jobInfo.status_rejected,
-            status_initial: jobInfo.app_status === "Interviewed" ? jobInfo.statusDate : jobInfo.status_initial,
+            status_interviewed: jobInfo.app_status === "Interviewed" ? jobInfo.statusDate : jobInfo.status_interviewed,
             status_technical: jobInfo.app_status === "Technical" ? jobInfo.statusDate : jobInfo.status_technical,
             status_offer: jobInfo.app_status === "Offer" ? jobInfo.statusDate : jobInfo.status_offer,
           };

@@ -9,7 +9,7 @@ function NavBar() {
           type="button"
           className="btn btn-primary"
           data-bs-toggle="modal"
-          data-bs-target="#myModal"
+          data-bs-target="#addJobModal"
         >
           Add Job
         </button>

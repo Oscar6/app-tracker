@@ -75,7 +75,9 @@ const ListJobs = ({ refreshJobList }) => {
     <div>
       <div className="sticky-count">
         <h1 className="list-header">Applications: {jobsList.length}</h1>
-        <StatusCounts jobsList={jobsList} />
+        <StatusCounts 
+          jobsList={jobsList}
+        />
         <div className="job-filter">
           <Typeahead
             id="company-search"

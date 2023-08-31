@@ -58,7 +58,7 @@ app.put("/job/:id", (req, res) => {
         date_applied = $3, 
         app_status = $4, 
         status_rejected = $5,
-        status_initial = $6,
+        status_interviewed = $6,
         status_technical = $7,
         status_offer = $8 
         WHERE id = $9`;
@@ -68,7 +68,7 @@ app.put("/job/:id", (req, res) => {
         req.body.date_applied,
         req.body.app_status,
         req.body.status_rejected,
-        req.body.status_initial,
+        req.body.status_interviewed,
         req.body.status_technical,
         req.body.status_offer
     ];
