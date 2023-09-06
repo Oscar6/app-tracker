@@ -13,7 +13,9 @@ const UpdateJobs = ({ job, setJobsList }) => {
         status_rejected: job.status_rejected,
         status_interviewed: job.status_interviewed,
         status_technical: job.status_technical,
-        status_offer: job.status_offer
+        status_offer: job.status_offer,
+        job_link: job.job_link,
+        job_salary: job.job_salary
     });
 
     const [errorMessages, setErrorMessages] = useState({
@@ -112,6 +114,8 @@ useEffect(() => {
             status_interviewed: jobInfo.app_status === "Interviewed" ? jobInfo.statusDate : jobInfo.status_interviewed,
             status_technical: jobInfo.app_status === "Technical" ? jobInfo.statusDate : jobInfo.status_technical,
             status_offer: jobInfo.app_status === "Offer" ? jobInfo.statusDate : jobInfo.status_offer,
+            job_link: jobInfo.job_link,
+            job_salary: jobInfo.job_salary,
           };
           await fetch(`http://localhost:5000/job/${job.id}`, {
               method: 'PUT',
@@ -179,6 +183,30 @@ useEffect(() => {
                                 {errorMessages.job_role && (
                                     <p className="text-danger">{errorMessages.job_role}</p>
                                 )}
+                            </label>
+
+                            <label>
+                                Job Link: {/* Add Job Link input */}
+                                <input
+                                type="text"
+                                name="job_link"
+                                className="form-control"
+                                onChange={changeHandler}
+                                value={jobInfo.job_link}
+                                />
+                                {/* Add error message for job_link if needed */}
+                            </label>
+
+                            <label>
+                                Job Salary: {/* Add Job Salary input */}
+                                <input
+                                type="text"
+                                name="job_salary"
+                                className="form-control"
+                                onChange={changeHandler}
+                                value={jobInfo.job_salary}
+                                />
+                                {/* Add error message for job_salary if needed */}
                             </label>
 
                             <label className="date-input">

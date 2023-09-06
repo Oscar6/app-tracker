@@ -7,6 +7,8 @@ const AddJob = ({ setJobsList, refreshJobList }) => {
     const [newJob, setNewJob] = useState({
         company_name: "",
         job_role: "",
+        job_link: "",
+        job_salary: "",
         date_applied: "",
         app_status: "",
     });
@@ -68,6 +70,8 @@ const AddJob = ({ setJobsList, refreshJobList }) => {
             const body = {
                 company_name: newJob.company_name,
                 job_role: newJob.job_role,
+                job_link: newJob.job_link,
+                job_salary: newJob.job_salary,
                 date_applied: newJob.date_applied,
                 app_status: newJob.app_status,
             };
@@ -83,6 +87,8 @@ const AddJob = ({ setJobsList, refreshJobList }) => {
             setNewJob({
                 company_name: "",
                 job_role: "",
+                job_link: "",
+                job_salary: "",
                 date_applied: "",
                 app_status: "",
             });
@@ -134,6 +140,30 @@ const AddJob = ({ setJobsList, refreshJobList }) => {
                                 {errorMessages.job_role && (
                                     <p className="text-danger">{errorMessages.job_role}</p>
                                 )}
+                            </label>
+
+                            <label>
+                                Job Link: {/* Add Job Link input */}
+                                <input
+                                type="text"
+                                name="job_link"
+                                className="form-control"
+                                onChange={changeHandler}
+                                value={newJob.job_link}
+                                />
+                                {/* Add error message for job_link if needed */}
+                            </label>
+
+                            <label>
+                                Job Salary: {/* Add Job Salary input */}
+                                <input
+                                type="text"
+                                name="job_salary"
+                                className="form-control"
+                                onChange={changeHandler}
+                                value={newJob.job_salary}
+                                />
+                                {/* Add error message for job_salary if needed */}
                             </label>
 
                             <label className="date-input">

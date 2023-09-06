@@ -110,8 +110,16 @@ const ListJobs = ({ refreshJobList }) => {
       <div className="job-list">
         {jobsToRender.map((job) => (
           <div className="job" key={job.id}>
-            <p className="company-name">{decodeHTMLEntities(job.company_name)}</p>
+            <a 
+              className="company-name"
+              href={job.job_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {decodeHTMLEntities(job.company_name)}
+            </a>
             <p className="job-role">{job.job_role}</p>
+            <p className="job-salary">{job.job_salary}</p>
             <span>
               Applied on:
               <br />

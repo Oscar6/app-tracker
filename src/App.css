@@ -109,22 +109,31 @@ body  {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: inherit;
 }
 
 .job-role {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.job-salary {
+  text-overflow: ellipsis;
+  color: rgb(1, 34, 48);
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .status-style {
-  margin-top: 17px;
+  margin-bottom: -5px;
 }
 
 .update-button {
   display: flex;
   align-self: flex-end;
-  margin-top: auto;
 }
 
 .modal-header {

@@ -14,10 +14,10 @@ app.use(express.json());
 // Create
 app.post("/job", async (req, res) => {
     try {
-      const { company_name, job_role, date_applied, app_status } = req.body;
+      const { company_name, job_role, job_link, job_salary, date_applied, app_status } = req.body;
       const newJob = await pool.query(
-        "INSERT INTO companies (company_name, job_role, date_applied, app_status) VALUES($1, $2, $3, $4) RETURNING *",
-        [company_name, job_role, date_applied, app_status]
+        "INSERT INTO companies (company_name, job_role, job_link, job_salary, date_applied, app_status) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+        [company_name, job_role, job_link, job_salary, date_applied, app_status]
       );
       res.status(201).json(newJob.rows[0]);
     } catch (err) {
@@ -60,8 +60,10 @@ app.put("/job/:id", (req, res) => {
         status_rejected = $5,
         status_interviewed = $6,
         status_technical = $7,
-        status_offer = $8 
-        WHERE id = $9`;
+        status_offer = $8,
+        job_link = $9,
+        job_salary = $10 
+        WHERE id = $11`;
     const values = [
         req.body.company_name,
         req.body.job_role,
@@ -70,7 +72,9 @@ app.put("/job/:id", (req, res) => {
         req.body.status_rejected,
         req.body.status_interviewed,
         req.body.status_technical,
-        req.body.status_offer
+        req.body.status_offer,
+        req.body.job_link,
+        req.body.job_salary
     ];
     
     pool.query(updateJob, [...values, jobId]).then((response) => {
