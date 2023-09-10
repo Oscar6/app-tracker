@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import ListJobs from './components/ListJobs';
 import NavBar from './components/NavBar';
@@ -11,6 +11,7 @@ function App() {
 
   const refreshJobList = async () => {
     try {
+      console.log('Job List is refreshing')
       const res = await fetch("http://localhost:5000/job");
       const jsonData = await res.json();
       setJobsList(jsonData);
@@ -18,6 +19,9 @@ function App() {
       console.error(error);
     }
   };
+  useEffect(() => {refreshJobList()} ,[])  
+  useEffect(() => {} ,[jobsList])
+
 
   return (
     <div>

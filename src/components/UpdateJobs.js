@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import validator from "validator";
 import { decodeHTMLEntities } from "./Helper";
 
-const UpdateJobs = ({ job, setJobsList }) => {
-    // console.log(job);
+const UpdateJobs = ({ job, refreshJobList }) => {
+
     const [jobInfo, setJobInfo] = useState({
         company_name: job.company_name,
         job_role: job.job_role,
@@ -117,12 +117,14 @@ useEffect(() => {
             job_link: jobInfo.job_link,
             job_salary: jobInfo.job_salary,
           };
+
           await fetch(`http://localhost:5000/job/${job.id}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(body)
           });
-          setJobsList(prevJobsList => prevJobsList.map(prevJob => prevJob.id === job.id ? { ...prevJob, ...jobInfo } : prevJob));
+          console.log('updating job')
+          refreshJobList();
       } catch (error) {
           console.error(error);
       }
@@ -133,7 +135,7 @@ useEffect(() => {
             await fetch(`http://localhost:5000/job/${job.id}`, {
                 method: 'DELETE'
             });
-            setJobsList(prevJobsList => prevJobsList.filter(prevJob => prevJob.id !== job.id));
+            refreshJobList();
         } catch (error) {
             console.error(error)
         }

@@ -1,36 +1,14 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import UpdateJobs from "./UpdateJobs";
 import StatusCounts from "./StatusCounts";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { decodeHTMLEntities } from "./Helper";
 
-const ListJobs = ({ refreshJobList }) => {
-  const [jobsList, setJobsList] = useState([]);
+const ListJobs = ({ refreshJobList, jobsList }) => {
   const [selectedCompany, setSelectedCompany] = useState('');
   const [filteredJobsList, setFilteredJobsList] = useState([]);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-
-
-  const fetchAllJobs = useCallback(async () => {
-    try {
-      const res = await fetch("http://localhost:5000/job");
-      const jsonData = await res.json();
-      setJobsList(jsonData);
-      refreshJobList();
-    } catch (error) {
-      console.error(error);
-    }
-  }, [refreshJobList]);
-
-  useEffect(() => {
-    fetchAllJobs();
-  }, [fetchAllJobs]);
-
-  useEffect(() => {
-  }, [jobsList]);
-
-  // console.log(jobsList);
 
   const sortJobs = jobsList
     .sort((a, b) => b.date_applied.localeCompare(a.date_applied))
@@ -143,7 +121,7 @@ const ListJobs = ({ refreshJobList }) => {
             <UpdateJobs
               job={job}
               jobsList={jobsList}
-              setJobsList={setJobsList}
+              refreshJobList={refreshJobList}
             />
           </div>
         ))}
