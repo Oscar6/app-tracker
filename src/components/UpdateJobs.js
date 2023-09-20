@@ -117,13 +117,12 @@ useEffect(() => {
             job_link: jobInfo.job_link,
             job_salary: jobInfo.job_salary,
           };
-
+          console.log('updating job')
           await fetch(`http://localhost:5000/job/${job.id}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify(body)
           });
-          console.log('updating job')
           refreshJobList();
       } catch (error) {
           console.error(error);
