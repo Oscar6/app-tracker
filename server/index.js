@@ -79,12 +79,13 @@ app.put("/job/:id", (req, res) => {
     
     pool.query(updateJob, [...values, jobId]).then((response) => {
         console.log("Updated application");
-        console.log(response);
+        // console.log(response);
         res.send("Job application updated: " + JSON.stringify(req.body));
     }).catch((err) => {
         console.error(err);
         res.status(500).send("Error updating job application.");
     });
+    console.log(req.body);
 });
 
 // Delete
