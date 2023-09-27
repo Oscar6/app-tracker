@@ -1,3 +1,6 @@
+https://github.com/Oscar6/app-tracker/assets/7444980/02cd4071-5488-40df-bd92-5f228ab88238
+
+
 # Setting up Job tracker
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
